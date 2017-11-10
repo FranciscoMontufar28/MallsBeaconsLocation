@@ -31,36 +31,6 @@ public class BeaconLocationService extends Service {
 
     int current_location=0, current_location2=0;
 
-    private static final Map<String, List<String>> PLACES_BY_BEACONS;
-
-    // TODO: replace "<major>:<minor>" strings to match your own beacons.
-    static {
-        Map<String, List<String>> placesByBeacons = new HashMap<>();
-        placesByBeacons.put("28:28250", new ArrayList<String>() {{
-            add("Heavenly Sandwiches");
-            // read as: "Heavenly Sandwiches" is closest
-            // to the beacon with major 22504 and minor 48827
-            add("Green & Green Salads");
-            // "Green & Green Salads" is the next closest
-            add("Mini Panini");
-            // "Mini Panini" is the furthest away
-        }});
-        placesByBeacons.put("648:12", new ArrayList<String>() {{
-            add("Mini Panini");
-            add("Green & Green Salads");
-            add("Heavenly Sandwiches");
-        }});
-        PLACES_BY_BEACONS = Collections.unmodifiableMap(placesByBeacons);
-    }
-
-    private List<String> placesNearBeacon(Beacon beacon) {
-        String beaconKey = String.format("%d:%d", beacon.getMajor(), beacon.getMinor());
-        if (PLACES_BY_BEACONS.containsKey(beaconKey)) {
-            return PLACES_BY_BEACONS.get(beaconKey);
-        }
-        return Collections.emptyList();
-    }
-
     private BeaconManager beaconManager;
     private BeaconRegion region;
     /*****************************************************************/
@@ -79,8 +49,6 @@ public class BeaconLocationService extends Service {
 
     @Override
     public int onStartCommand(Intent intent2, int flags, int startId) {
-
-
         Log.e("Reactive", "Entro al servicio");
         final Intent intent =new Intent(BeaconReceiver.ACTION_BEACON);
         //region = new Region("ranged region", UUID.fromString("b9407f30-f5f8-466e-aff9-25556b57fe6d"), null, null);
@@ -89,14 +57,12 @@ public class BeaconLocationService extends Service {
         beaconManager.setRangingListener(new BeaconManager.BeaconRangingListener() {
             @Override
             public void onBeaconsDiscovered(BeaconRegion beaconRegion, List<Beacon> list) {
-                Log.e("Reactive", "beaconRegion: "+beaconRegion);
+               // Log.e("Reactive", "beaconRegion: "+beaconRegion);
                 Log.e("Reactive", "list: "+list);
                 Log.e("Reactive", "Entro a onBeaconsDiscovered");
                 if (!list.isEmpty()) {
                     Beacon nearestBeacon = list.get(0);
-                    List<String> places = placesNearBeacon(nearestBeacon);
-                    Log.d("reactive", "Nearest places: " + places);
-                    //Log.e("Reactive", "size "+list.size());
+                    Log.e("Reactive", "size "+list.size());
                     switch (list.size()){
 
                         case 1:
@@ -105,7 +71,7 @@ public class BeaconLocationService extends Service {
                             intent.putExtra(BeaconReceiver.EXTRA_MINOR, nearestBeacon.getMinor());
 
                             break;
-                        case 2:
+                        default:
                             Log.e("Reactive", "case 2");
                             Beacon nearestBeacon2 = list.get(1);
                             intent.putExtra(BeaconReceiver.EXTRA_MAJOR, nearestBeacon.getMajor());
@@ -114,6 +80,7 @@ public class BeaconLocationService extends Service {
                             intent.putExtra(BeaconReceiver.EXTRA_MAJOR2, nearestBeacon2.getMajor());
                             intent.putExtra(BeaconReceiver.EXTRA_MINOR2, nearestBeacon2.getMinor());
                             break;
+
 
 
                     }
@@ -130,8 +97,8 @@ public class BeaconLocationService extends Service {
             }
 
         });
-        region = new BeaconRegion("ranged region", UUID.fromString("fda50693-a4e2-4fb1-afcf-c6eb07647825"), null, null);
-
+        //region = new BeaconRegion("ranged region", UUID.fromString("fda50693-a4e2-4fb1-afcf-c6eb07647825"), null, null);
+        region = new BeaconRegion("ranged region", UUID.fromString("b9407f30-f5f8-466e-aff9-25556b57fe6d"), null, null);
 
 
 
@@ -143,7 +110,6 @@ public class BeaconLocationService extends Service {
                 beaconManager.startRanging(region);
             }
         });
-
 
 
 

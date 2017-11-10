@@ -21,7 +21,7 @@ public class BeaconReceiver extends BroadcastReceiver {
 
 
     PublishSubject<Integer[]> subject;
-
+    Integer[] data = null;
 
     public BeaconReceiver() {
 
@@ -42,7 +42,8 @@ public class BeaconReceiver extends BroadcastReceiver {
         Log.e("Reactive", "major: "+ major);
         Log.e("Reactive", "major: "+ major2);
 
-        subject.onNext(new Integer[]{major, minor, major2, minor2});
+        subject.onNext(new Integer[]{major, major2});
+        //subject.onNext(new Integer[]{major});
 
 
 /************************************************************************************************************************************/
