@@ -17,6 +17,7 @@ import com.example.francisco.mallsbeaconslocation.adapter.RecomendationAdapter;
 import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
 import com.example.francisco.mallsbeaconslocation.fragments.MainFragment;
 import com.example.francisco.mallsbeaconslocation.models.Recomendation;
+import com.example.francisco.mallsbeaconslocation.net.api.BeaconSearchApi;
 import com.example.francisco.mallsbeaconslocation.services.BeaconLocationService;
 
 import java.util.List;
@@ -25,13 +26,14 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements BeaconSearchApi.onBeaconSearch{
 
     ActivityMainBinding binding;
     Intent intent;
     BeaconReceiver receiver;
 
     Disposable disposable;
+    MainFragment fragment;
 
 
 
@@ -41,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setPromotionhandler(this);
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
-
-        putFragment(R.id.container, MainFragment.instance());
+        fragment = MainFragment.instance();
+        putFragment(R.id.container, fragment);
     }
 
     public void putFragment(int container, Fragment fragment){
@@ -52,7 +54,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void start(){
-
+        final BeaconSearchApi api = new BeaconSearchApi(this);
+        api.getPreferencesRecomender("2000008","1","2",this);
+        api.getPreferencesMostPreferred("2000008","1","2",this);
         Toast.makeText(this, "Inicar Servicio", Toast.LENGTH_SHORT).show();
         intent = new Intent(this, BeaconLocationService.class);
         startService(intent);
@@ -60,9 +64,7 @@ public class MainActivity extends AppCompatActivity {
         IntentFilter filter = new IntentFilter(BeaconReceiver.ACTION_BEACON);
         registerReceiver(receiver, filter);
         disposable = receiver.getBeaconNotify()
-
                 .distinctUntilChanged(new Function<Integer[], Object>() {
-
                     @Override
                     public Object apply(Integer[] integers) throws Exception {
                         return integers[0];
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 .subscribe(new Consumer<Integer[]>() {
                     @Override
                     public void accept(Integer[] integers) throws Exception {
+                        //api.getPreferencesRecomender("2000008",""+integers[0],""+integers[1],this);
+                      // api.getPreferencesRecomender("2000008","1","2",MainActivity.this);
                         Log.i("BEACONINFO", "MARJOR1: "+integers[0]+" MAJOR2:"+integers[1]);
                     }
                 });
@@ -83,5 +87,10 @@ public class MainActivity extends AppCompatActivity {
         stopService(intent);
         disposable.dispose();
         unregisterReceiver(receiver);
+    }
+
+    @Override
+    public void onBeaconSearch(List<Recomendation> data) {
+        fragment.changedata(data);
     }
 }

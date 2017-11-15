@@ -45,6 +45,11 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
         return data.size();
     }
 
+    public void setData(List<Recomendation> data){
+        this.data = data;
+        notifyDataSetChanged();
+    }
+
 
     //region RecomendationHolder
     static class RecomendationHolder extends RecyclerView.ViewHolder{

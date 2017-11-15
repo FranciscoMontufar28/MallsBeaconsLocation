@@ -40,9 +40,7 @@
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:layout_marginBottom="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_marginRight="0dp"
+            android:contentDescription="Image of the products"
             app:layout_constraintBottom_toBottomOf="@+id/itemimage"
             app:layout_constraintLeft_toLeftOf="@+id/itemimage"
             app:layout_constraintRight_toRightOf="parent"
@@ -79,38 +77,51 @@
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/itemdescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{recomendation.itemdescription}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:visibility="@{recomendation.itemdescription == null ? V.GONE : V.VISIBLE}"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Description" />
 
                 <TextView
-                    android:id="@+id/itemsFeatures"
+                    android:id="@+id/itemsSodium"
                     android:layout_width="0dp"
-                    android:layout_height="18dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{recomendation.itemsodium}"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/itemdescription"
-                    tools:text="Features" />
+                    tools:text="Sodium" />
+
+                <TextView
+                    android:id="@+id/itemSugar"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{recomendation.itemsugar}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/itemsSodium"
+                    tools:text="Sugar" />
+
             </android.support.constraint.ConstraintLayout>
 
         </android.support.v7.widget.CardView>

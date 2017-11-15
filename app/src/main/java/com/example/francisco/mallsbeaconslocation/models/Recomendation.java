@@ -11,6 +11,14 @@ public class Recomendation {
     public Recomendation() {
     }
 
+    public Recomendation(String itemname, String itemdescription, String itemurl, String itemsodium, String itemsugar) {
+        this.itemname = itemname;
+        this.itemdescription = itemdescription;
+        this.itemurl = itemurl;
+        this.itemsodium = itemsodium;
+        this.itemsugar = itemsugar;
+    }
+
     public String getItemname() {
         return itemname;
     }

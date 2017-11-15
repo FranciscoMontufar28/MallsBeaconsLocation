@@ -26,8 +26,6 @@ public class BeaconReceiver extends BroadcastReceiver {
     public BeaconReceiver() {
 
         subject = PublishSubject.create();
-        /*subject.distinctUntilChanged()
-                .subscribe(new Subscriber<Integer>())*/
     }
 
     @Override

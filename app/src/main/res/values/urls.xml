@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="url_base_beacons">"http://10.130.1.87:3000/beacons/"</string>
+    <string name="url_base_tags">"http://192.168.190.40:3000/items/"</string>
 
 </resources>
