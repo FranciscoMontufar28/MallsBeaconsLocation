@@ -32,6 +32,7 @@ public class MainFragment extends Fragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
         Log.e("URL","Entro en onCreateView Fragment");
         data = new ArrayList<>();
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
@@ -46,6 +47,8 @@ public class MainFragment extends Fragment{
 
 
     public void changedata(List<Recomendation>data){
+        //List<Recomendation> newdata = new ArrayList<>();
+        //newdata.add(data);
         adapter.setData(data);
         adapter.notifyDataSetChanged();
     }
