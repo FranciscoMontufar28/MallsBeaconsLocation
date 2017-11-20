@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -8,7 +7,7 @@
 
         <variable
             name="Promotionhandler"
-            type="com.example.francisco.mallsbeaconslocation.MainActivity"/>
+            type="com.example.francisco.mallsbeaconslocation.MainActivity" />
 
     </data>
 
@@ -17,18 +16,26 @@
         android:layout_height="match_parent"
         tools:context="com.example.francisco.pruebabackground.BeaconRecomendation">
 
+        <ImageView
+            android:id="@+id/toolbarMain"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/appbarmask" />
+
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintRight_toRightOf="parent"
             android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/Start_button"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/Start_button">
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbarMain">
 
         </FrameLayout>
 
@@ -38,13 +45,13 @@
             android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginBottom="8dp"
-            android:text="Start"
+            android:onClick="@{()->Promotionhandler.start()}"
+            android:text="@string/Btn_Start"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toLeftOf="@+id/Stop_Button"
             tools:ignore="RtlHardcoded"
-            android:onClick="@{()->Promotionhandler.start()}"
 
             />
 
@@ -54,12 +61,41 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:text="Stop"
+            android:onClick="@{()->Promotionhandler.stop()}"
+            android:text="@string/Btn_Stop"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/Start_button"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="RtlHardcoded"
-            android:onClick="@{()->Promotionhandler.stop()}"/>
+            tools:ignore="RtlHardcoded" />
+
+        <TextView
+            android:id="@+id/aisle_name_text"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:text="Supermercado"
+            android:textAlignment="textStart"
+            android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+            app:layout_constraintBottom_toTopOf="@+id/container"
+            app:layout_constraintEnd_toStartOf="@+id/Btn_logout"
+            app:layout_constraintStart_toStartOf="@+id/toolbarMain"
+            app:layout_constraintTop_toTopOf="@+id/toolbarMain" />
+
+        <ImageView
+            android:id="@+id/Btn_logout"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/container"
+            app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_logout"
+            android:onClick="@{()->Promotionhandler.logout()}"/>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

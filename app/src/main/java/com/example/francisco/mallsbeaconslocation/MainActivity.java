@@ -1,10 +1,13 @@
 package com.example.francisco.mallsbeaconslocation;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,9 +19,12 @@ import com.example.francisco.mallsbeaconslocation.Receivers.BeaconReceiver;
 import com.example.francisco.mallsbeaconslocation.adapter.RecomendationAdapter;
 import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
 import com.example.francisco.mallsbeaconslocation.fragments.MainFragment;
+import com.example.francisco.mallsbeaconslocation.models.AisleName;
 import com.example.francisco.mallsbeaconslocation.models.Recomendation;
+import com.example.francisco.mallsbeaconslocation.net.api.AisleNameApi;
 import com.example.francisco.mallsbeaconslocation.net.api.BeaconSearchApi;
 import com.example.francisco.mallsbeaconslocation.services.BeaconLocationService;
+import com.example.francisco.mallsbeaconslocation.util.Preferences;
 
 import java.util.List;
 
@@ -26,7 +32,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 
-public class MainActivity extends AppCompatActivity implements BeaconSearchApi.onBeaconSearch{
+public class MainActivity extends AppCompatActivity implements BeaconSearchApi.onBeaconSearch, AisleNameApi.onAisleSearch{
 
     ActivityMainBinding binding;
     Intent intent;
@@ -34,6 +40,10 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
 
     Disposable disposable;
     MainFragment fragment;
+    SharedPreferences preferences;
+    String UserId;
+
+
 
 
 
@@ -45,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
         SystemRequirementsChecker.checkWithDefaultDialogs(this);
         fragment = MainFragment.instance();
         putFragment(R.id.container, fragment);
+
+        //Toast.makeText(this, ""+email,Toast.LENGTH_SHORT).show();
+
+
     }
 
     public void putFragment(int container, Fragment fragment){
@@ -54,9 +68,14 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
     }
 
     public void start(){
+        preferences = getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
+        UserId = preferences.getString(Preferences.KEY_ID, null);
+
         final BeaconSearchApi api = new BeaconSearchApi(this);
-        api.getPreferencesRecomender("2000008","1","2",this);
-        api.getPreferencesMostPreferred("2000008","1","2",this);
+        final AisleNameApi aisleNameapi = new AisleNameApi(this);
+        api.getPreferencesRecomender(""+UserId,"1","2",this);
+        aisleNameapi.getAisleName("1","2",this);
+
         Toast.makeText(this, "Inicar Servicio", Toast.LENGTH_SHORT).show();
         intent = new Intent(this, BeaconLocationService.class);
         startService(intent);
@@ -89,8 +108,50 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
         unregisterReceiver(receiver);
     }
 
+    public void logout(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("¿Desea cerrar Sesión?")
+                .setTitle("Sesion");
+
+
+
+        builder.setPositiveButton("Cerrar Sesión", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                preferences = getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.putBoolean(Preferences.KEY_LOGGED, false);
+                editor.apply();
+
+                Intent intentlogout = new Intent(MainActivity.this, LoginActivity.class);
+                startActivity(intentlogout);
+                finish();
+            }
+        });
+
+        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                dialog.cancel();
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+
+    }
+
     @Override
     public void onBeaconSearch(List<Recomendation> data) {
         fragment.changedata(data);
+    }
+
+    @Override
+    public void onAisleSearch(List<AisleName> dataaisle) {
+
+        AisleName aisleName = dataaisle.get(0);
+        TextView Title = findViewById(R.id.aisle_name_text);
+        Title.setText(aisleName.getAislename());
+
     }
 }

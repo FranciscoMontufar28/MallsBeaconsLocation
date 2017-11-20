@@ -18,8 +18,6 @@ public class BeaconSearchApi extends HttpApi {
 
     static final int REQUEST_BEACON = 0;
 
-
-
     public interface onBeaconSearch{
         void onBeaconSearch(List<Recomendation> data);
     }
@@ -38,6 +36,7 @@ public class BeaconSearchApi extends HttpApi {
         HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
         task.execute(url);
     }
+
 
     public void getPreferencesMostPreferred(String Userid, String Beaconone, String Beacontwo, BeaconSearchApi.onBeaconSearch onBeaconSearch){
         this.onBeaconSearch = (BeaconSearchApi.onBeaconSearch) onBeaconSearch;

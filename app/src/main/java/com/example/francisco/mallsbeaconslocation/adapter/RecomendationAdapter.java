@@ -6,9 +6,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.francisco.mallsbeaconslocation.R;
 
+import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
 import com.example.francisco.mallsbeaconslocation.databinding.TemplateRecomendationBinding;
 import com.example.francisco.mallsbeaconslocation.models.Recomendation;
 

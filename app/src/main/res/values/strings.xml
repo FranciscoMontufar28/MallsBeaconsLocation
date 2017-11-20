@@ -2,4 +2,6 @@
     <string name="app_name">MallsBeaconsLocation</string>
     <string name="ImageTemplateRecomendation">Imagen de Recomendacion</string>
     <string name="url_db_tags">http://192.168.0.17/tags/public/index.php/tags/"%s"</string>
+    <string name="Btn_Start">Start</string>
+    <string name="Btn_Stop">Stop</string>
 </resources>
