@@ -29,9 +29,10 @@
             android:id="@+id/container"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/Start_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -39,7 +40,19 @@
 
         </FrameLayout>
 
-        <Button
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/floatingactionmain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            app:backgroundTint="@color/RednoActivate"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_circleline"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{()->Promotionhandler.start()}"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <!--<Button
             android:id="@+id/Start_button"
             style="@style/Widget.AppCompat.Button.Colored"
             android:layout_width="0dp"
@@ -66,7 +79,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toRightOf="@+id/Start_button"
             app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="RtlHardcoded" />
+            tools:ignore="RtlHardcoded" />-->
 
         <TextView
             android:id="@+id/aisle_name_text"

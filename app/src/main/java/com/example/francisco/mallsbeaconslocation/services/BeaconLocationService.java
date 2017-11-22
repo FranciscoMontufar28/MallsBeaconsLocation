@@ -98,7 +98,8 @@ public class BeaconLocationService extends Service {
 
         });
         //region = new BeaconRegion("ranged region", UUID.fromString("fda50693-a4e2-4fb1-afcf-c6eb07647825"), null, null);
-        region = new BeaconRegion("ranged region", UUID.fromString("b9407f30-f5f8-466e-aff9-25556b57fe6d"), null, null);
+        //region = new BeaconRegion("ranged region", UUID.fromString("b9407f30-f5f8-466e-aff9-25556b57fe6d"), null, null);
+        region = new BeaconRegion("ranged region", UUID.fromString("E2C56DB5-DFFB-48D2-B060-D0F5A71096E0"), null, null);
 
 
 

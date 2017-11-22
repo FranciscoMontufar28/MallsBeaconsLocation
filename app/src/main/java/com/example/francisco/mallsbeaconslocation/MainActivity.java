@@ -4,9 +4,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -52,7 +54,6 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setPromotionhandler(this);
-        SystemRequirementsChecker.checkWithDefaultDialogs(this);
         fragment = MainFragment.instance();
         putFragment(R.id.container, fragment);
 
@@ -67,46 +68,62 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
         ft.commit();
     }
 
-    public void start(){
-        preferences = getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
-        UserId = preferences.getString(Preferences.KEY_ID, null);
+    public void start() {
 
-        final BeaconSearchApi api = new BeaconSearchApi(this);
-        final AisleNameApi aisleNameapi = new AisleNameApi(this);
-        api.getPreferencesRecomender(""+UserId,"1","2",this);
-        aisleNameapi.getAisleName("1","2",this);
 
-        Toast.makeText(this, "Inicar Servicio", Toast.LENGTH_SHORT).show();
-        intent = new Intent(this, BeaconLocationService.class);
-        startService(intent);
-        receiver = new BeaconReceiver();
-        IntentFilter filter = new IntentFilter(BeaconReceiver.ACTION_BEACON);
-        registerReceiver(receiver, filter);
-        disposable = receiver.getBeaconNotify()
-                .distinctUntilChanged(new Function<Integer[], Object>() {
-                    @Override
-                    public Object apply(Integer[] integers) throws Exception {
-                        return integers[0];
-                    }
-                })
-                .subscribe(new Consumer<Integer[]>() {
-                    @Override
-                    public void accept(Integer[] integers) throws Exception {
-                        //api.getPreferencesRecomender("2000008",""+integers[0],""+integers[1],this);
-                      // api.getPreferencesRecomender("2000008","1","2",MainActivity.this);
-                        Log.i("BEACONINFO", "MARJOR1: "+integers[0]+" MAJOR2:"+integers[1]);
-                    }
-                });
+        if (binding.floatingactionmain.getBackgroundTintList().equals(ContextCompat.getColorStateList(this, R.color.RednoActivate))) {
+            binding.floatingactionmain.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.colorPrimary));
+            SystemRequirementsChecker.checkWithDefaultDialogs(this);
+            preferences = getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
+            UserId = preferences.getString(Preferences.KEY_ID, null);
 
+            final BeaconSearchApi api = new BeaconSearchApi(this);
+            final AisleNameApi aisleNameapi = new AisleNameApi(this);
+            api.getPreferencesRecomender(""+UserId,"1","2",this);
+            //api.getPreferencesMostPreferred(""+UserId,"1","2",this);
+
+            aisleNameapi.getAisleName("1","2",this);
+
+            Toast.makeText(this, "Inicar Servicio", Toast.LENGTH_SHORT).show();
+            intent = new Intent(this, BeaconLocationService.class);
+            startService(intent);
+            receiver = new BeaconReceiver();
+            IntentFilter filter = new IntentFilter(BeaconReceiver.ACTION_BEACON);
+            registerReceiver(receiver, filter);
+            disposable = receiver.getBeaconNotify()
+                    .distinctUntilChanged(new Function<Integer[], Object>() {
+                        @Override
+                        public Object apply(Integer[] integers) throws Exception {
+                            return integers[0];
+                        }
+                    })
+                    .subscribe(new Consumer<Integer[]>() {
+                        @Override
+                        public void accept(Integer[] integers) throws Exception {
+                            //aisleNameapi.getAisleName("" + integers[0], "" + integers[1], MainActivity.this);
+                            //api.getPreferencesRecomender("2000105", "" + integers[0], "" + integers[1], MainActivity.this);
+                            //api.getPreferencesRecomender("2000008","1","2",MainActivity.this);
+                            //Toast.makeText(MainActivity.this, "" + integers[0] + " " + integers[1], Toast.LENGTH_SHORT).show();
+                            //Log.i("BEACONINFO", "MARJOR1: " + integers[0] + " MAJOR2:" + integers[1]);
+                        }
+                    });
+
+        }else{
+            binding.floatingactionmain.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.RednoActivate));
+            Toast.makeText(this, "Detener Servicio", Toast.LENGTH_SHORT).show();
+            stopService(intent);
+            disposable.dispose();
+            unregisterReceiver(receiver);
+        }
     }
 
-    public void stop(){
+    /*public void stop(){
 
         Toast.makeText(this, "Detener Servicio", Toast.LENGTH_SHORT).show();
         stopService(intent);
         disposable.dispose();
         unregisterReceiver(receiver);
-    }
+    }*/
 
     public void logout(){
 
