@@ -21,73 +21,43 @@
 
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#a68bc34a">
-
-        <ImageView
-            android:id="@+id/itemimage"
-            android:layout_width="0dp"
-            android:layout_height="180dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            android:contentDescription="@string/ImageTemplateRecomendation"
-            android:scaleType="centerCrop"
-            app:imgUrl="@{promotion.itemurl}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/imgbd" />
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="40dp"
-            android:contentDescription="Image of the products"
-            app:layout_constraintBottom_toBottomOf="@+id/itemimage"
-            app:layout_constraintLeft_toLeftOf="@+id/itemimage"
-            app:layout_constraintRight_toRightOf="parent"
-            app:srcCompat="@drawable/mask" />
-
-        <TextView
-            android:id="@+id/itemname"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:text="@{promotion.itemname}"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-            app:layout_constraintBottom_toBottomOf="@+id/itemimage"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="@+id/itemimage"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:text="Name" />
+        android:layout_height="wrap_content">
 
         <android.support.v7.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginTop="24dp"
-            android:backgroundTint="#a68bc34a"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemimage">
+            >
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="match_parent"
+                android:background="#c18bc34a">
+
+                <ImageView
+                    android:id="@+id/img_Promotion"
+                    android:layout_width="0dp"
+                    android:layout_height="300dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
+                    app:imgUrl="@{promotion.itemurl}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@color/imgbd" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/img_Promotion"
+                    app:layout_constraintEnd_toEndOf="@+id/img_Promotion"
+                    app:layout_constraintStart_toStartOf="@+id/img_Promotion"
+                    app:srcCompat="@drawable/mask" />
 
                 <TextView
-                    android:id="@+id/itemdescription"
+                    android:id="@+id/item_promotion_Descrip"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -96,65 +66,56 @@
                     android:layout_marginTop="8dp"
                     android:text="@{promotion.promotiondescription}"
                     android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-                    android:visibility="@{promotion.promotiondescription == null ? V.GONE : V.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView4"
+                    app:layout_constraintStart_toStartOf="@+id/imageView4"
+                    app:layout_constraintTop_toTopOf="@+id/imageView4"
                     tools:text="Description" />
 
+                <TextView
+                    android:id="@+id/item_promotion_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@{promotion.itemname}"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.166"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/img_Promotion"
+                    tools:text="Name" />
 
-            </android.support.constraint.ConstraintLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/Btn_Like_Promo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginTop="8dp"
-            android:clickable="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/itemname"
-            app:srcCompat="@drawable/ic_thumb_up" />
-
-        <!--<android.support.v7.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            android:backgroundTint="#a68bc34a">
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <Button
-                    android:id="@+id/Btn_Like_Promo"
-                    style="@style/Widget.AppCompat.Button.Colored"
+                <TextView
+                    android:id="@+id/item_promotion_info"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:backgroundTint="#388E3C"
-                    android:text="Me Gusta"
+                    android:text="@{promotion.itemdescription}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.166"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@+id/item_promotion_name"
+                    tools:text="Information" />
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/floatingActionButton4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="270dp"
+                    android:clickable="true"
+                    app:layout_constraintEnd_toEndOf="@+id/item_promotion_Descrip"
+                    app:layout_constraintTop_toTopOf="@+id/img_Promotion"
+                    app:srcCompat="@drawable/ic_thumb_up" />
 
             </android.support.constraint.ConstraintLayout>
-        </android.support.v7.widget.CardView>-->
+        </android.support.v7.widget.CardView>
 
     </android.support.constraint.ConstraintLayout>
 </layout>

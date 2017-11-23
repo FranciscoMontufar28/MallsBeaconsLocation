@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 
-public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
+public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
 
     LayoutInflater inflater;
     List<Recomendation> data;
@@ -81,7 +81,7 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
         return data.get(position).getPromotion() ? 1 : 0;
     }
 
-    @Override
+/*    @Override
     public void onClick(View v) {
         switch (v.getId()){
 
@@ -91,7 +91,7 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
                 break;
         }
 
-    }
+    }*/
 
 
 
@@ -110,15 +110,11 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
     //region Holders
     static class RecomendationHolder extends RecyclerView.ViewHolder{
 
-        Button LikeItem;
-
         TemplateRecomendationBinding binding;
 
         public RecomendationHolder(View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
-            //LikeItem = itemView.findViewById(R.id.Btn_Like_Reco);
-            //Comprar = binding.BtnComprar;
         }
 
     }
@@ -126,14 +122,10 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
 
     static class PromotionHolder extends RecyclerView.ViewHolder{
 
-        Button LikeItem;
-
         TemplatePromotionBinding bindingPromotion;
         public PromotionHolder(View itemView) {
             super(itemView);
             bindingPromotion = DataBindingUtil.bind(itemView);
-            //LikeItem = itemView.findViewById(R.id.Btn_Like_Promo);
-
         }
     }
 
