@@ -1,28 +1,21 @@
 package com.example.francisco.mallsbeaconslocation;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.AttributeSet;
-import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.estimote.coresdk.common.requirements.SystemRequirementsChecker;
 import com.example.francisco.mallsbeaconslocation.Receivers.BeaconReceiver;
-import com.example.francisco.mallsbeaconslocation.adapter.RecomendationAdapter;
 import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
 import com.example.francisco.mallsbeaconslocation.fragments.MainFragment;
 import com.example.francisco.mallsbeaconslocation.models.AisleName;
@@ -84,7 +77,7 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
             final BeaconSearchApi api = new BeaconSearchApi(this);
             final AisleNameApi aisleNameapi = new AisleNameApi(this);
             api.getPreferencesRecomender(""+UserId,"1","2",this);
-            //api.getPreferencesMostPreferred(""+UserId,"1","2",this);
+            api.getPreferencesMostPreferred(""+UserId,"1","2",this);
 
             aisleNameapi.getAisleName("1","2",this);
 

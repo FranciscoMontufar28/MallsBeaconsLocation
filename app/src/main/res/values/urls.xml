@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!--<string name="url_base_tags">"http://192.168.190.40:3000/items/"</string>-->
+    <string name="url_base_tags">"http://192.168.190.17:3000/items/"</string>
     <!--<string name="url_base_tags">"http://192.168.60.73:3000/items/"</string>-->
-    <string name="url_base_tags">"http://192.168.1.55:3000/items/"</string>
+    <!--<string name="url_base_tags">"http://192.168.1.55:3000/items/"</string>-->
+    <!--<string name="url_base_tags">"http://10.130.13.51:3000/items/"</string>-->
 
 </resources>

@@ -6,12 +6,13 @@ package com.example.francisco.mallsbeaconslocation.models;
 
 public class Recomendation {
 
-    private String itemname, itemdescription, itemurl, itemsodium, itemsugar, promotion, promotiondescription;
+    private String itemname, itemdescription, itemurl, itemsodium, itemsugar, promotiondescription;
+    private boolean promotion;
 
     public Recomendation() {
     }
 
-    public Recomendation(String itemname, String itemdescription, String itemurl, String itemsodium, String itemsugar, String promotion, String promotiondescription) {
+    public Recomendation(String itemname, String itemdescription, String itemurl, String itemsodium, String itemsugar, boolean promotion, String promotiondescription) {
         this.itemname = itemname;
         this.itemdescription = itemdescription;
         this.itemurl = itemurl;
@@ -21,11 +22,11 @@ public class Recomendation {
         this.promotiondescription = promotiondescription;
     }
 
-    public String getPromotion() {
+    public boolean getPromotion() {
         return promotion;
     }
 
-    public void setPromotion(String promotion) {
+    public void setPromotion(boolean promotion) {
         this.promotion = promotion;
     }
 

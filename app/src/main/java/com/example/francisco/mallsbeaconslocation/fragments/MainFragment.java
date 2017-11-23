@@ -2,6 +2,7 @@ package com.example.francisco.mallsbeaconslocation.fragments;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
@@ -31,10 +32,16 @@ public class MainFragment extends Fragment{
     RecomendationAdapter adapter;
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        data = new ArrayList<>();
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         Log.e("URL","Entro en onCreateView Fragment");
-        data = new ArrayList<>();
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         //adapter = new RecomendationAdapter(getLayoutInflater(null), Data.getRecomendaciones());
         adapter = new RecomendationAdapter(getLayoutInflater(null), data);
@@ -47,8 +54,7 @@ public class MainFragment extends Fragment{
 
 
     public void addItems(List<Recomendation> data){
-        data.addAll(data);
-        adapter.setData(data);
+        this.data.addAll(data);
         adapter.notifyDataSetChanged();
 
     }

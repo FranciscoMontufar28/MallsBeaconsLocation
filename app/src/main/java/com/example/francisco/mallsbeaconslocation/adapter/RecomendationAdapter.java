@@ -26,7 +26,7 @@ import java.util.List;
  */
 
 
-public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdapter.RecomendationHolder> implements View.OnClickListener {
+public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
 
     LayoutInflater inflater;
     List<Recomendation> data;
@@ -37,34 +37,55 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
         this.data = data;
     }
 
-    @Override
+    /*@Override
     public RecomendationHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = inflater.inflate(R.layout.template_recomendation, parent, false);
         return new RecomendationHolder(v);
+    }*/
+
+
+    @Override
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v;
+
+        if (viewType==1){
+            v = inflater.inflate(R.layout.template_promotion, parent, false);
+            return new PromotionHolder(v);
+        }else{
+            v = inflater.inflate(R.layout.template_recomendation, parent, false);
+            return new RecomendationHolder(v);
+        }
     }
 
     @Override
-    public void onBindViewHolder(RecomendationHolder holder, int position) {
-        /*if(holder instanceof  RecomendationHolder){
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+        if(holder instanceof  RecomendationHolder){
             RecomendationHolder holder2 = (RecomendationHolder)  holder;
-        }*/
-        holder.binding.setRecomendation(data.get(position));
+            holder2.binding.setRecomendation(data.get(position));
+        }else{
+            PromotionHolder holder1 = (PromotionHolder) holder;
+            holder1.bindingPromotion.setPromotion(data.get(position));
+        }
+
+
+        //holder.binding.setRecomendation(data.get(position));
 
         //holder.NoComprar.setOnClickListener(this);
         //holder.Comprar.setOnClickListener(this);
 
     }
 
-    /*@Override
+    @Override
     public int getItemViewType(int position) {
-        return data.get(position).getItemname() ? 1 : 0;
-    }*/
+        Log.e("TypeView", ""+data.get(position).getPromotion());
+        return data.get(position).getPromotion() ? 1 : 0;
+    }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
 
-            case R.id.Btn_Comprar:
+            case R.id.Btn_Like_Reco:
                 Toast.makeText(context, "Btn Comprar", Toast.LENGTH_SHORT).show();
                 Log.e("OnclickAdpater", "Comprar");
                 break;
@@ -86,30 +107,35 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
 
 
 
-    //region RecomendationHolder
+    //region Holders
     static class RecomendationHolder extends RecyclerView.ViewHolder{
 
-        Button Comprar;
+        Button LikeItem;
 
         TemplateRecomendationBinding binding;
 
         public RecomendationHolder(View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
-            Comprar = itemView.findViewById(R.id.Btn_Comprar);
+            //LikeItem = itemView.findViewById(R.id.Btn_Like_Reco);
             //Comprar = binding.BtnComprar;
         }
 
     }
-    //endregion
+
 
     static class PromotionHolder extends RecyclerView.ViewHolder{
+
+        Button LikeItem;
 
         TemplatePromotionBinding bindingPromotion;
         public PromotionHolder(View itemView) {
             super(itemView);
+            bindingPromotion = DataBindingUtil.bind(itemView);
+            //LikeItem = itemView.findViewById(R.id.Btn_Like_Promo);
+
         }
     }
 
-
+//endregion
 }
