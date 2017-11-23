@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.example.francisco.mallsbeaconslocation.R;
 
 import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
+import com.example.francisco.mallsbeaconslocation.databinding.TemplatePromotionBinding;
 import com.example.francisco.mallsbeaconslocation.databinding.TemplateRecomendationBinding;
 import com.example.francisco.mallsbeaconslocation.models.Recomendation;
 
@@ -44,12 +45,20 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
 
     @Override
     public void onBindViewHolder(RecomendationHolder holder, int position) {
+        /*if(holder instanceof  RecomendationHolder){
+            RecomendationHolder holder2 = (RecomendationHolder)  holder;
+        }*/
         holder.binding.setRecomendation(data.get(position));
 
         //holder.NoComprar.setOnClickListener(this);
         //holder.Comprar.setOnClickListener(this);
 
     }
+
+    /*@Override
+    public int getItemViewType(int position) {
+        return data.get(position).getItemname() ? 1 : 0;
+    }*/
 
     @Override
     public void onClick(View v) {
@@ -80,7 +89,6 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
     //region RecomendationHolder
     static class RecomendationHolder extends RecyclerView.ViewHolder{
 
-        Button NoComprar;
         Button Comprar;
 
         TemplateRecomendationBinding binding;
@@ -89,12 +97,19 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecomendationAdap
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
             Comprar = itemView.findViewById(R.id.Btn_Comprar);
-            //NoComprar = itemView.findViewById(R.id.Btn_No_Comprar);
-            //NoComprar = binding.BtnNoComprar;
             //Comprar = binding.BtnComprar;
         }
+
     }
     //endregion
+
+    static class PromotionHolder extends RecyclerView.ViewHolder{
+
+        TemplatePromotionBinding bindingPromotion;
+        public PromotionHolder(View itemView) {
+            super(itemView);
+        }
+    }
 
 
 }

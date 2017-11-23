@@ -46,9 +46,14 @@ public class MainFragment extends Fragment{
     }
 
 
+    public void addItems(List<Recomendation> data){
+        data.addAll(data);
+        adapter.setData(data);
+        adapter.notifyDataSetChanged();
+
+    }
+
     public void changedata(List<Recomendation>data){
-        //List<Recomendation> newdata = new ArrayList<>();
-        //newdata.add(data);
         adapter.setData(data);
         adapter.notifyDataSetChanged();
     }

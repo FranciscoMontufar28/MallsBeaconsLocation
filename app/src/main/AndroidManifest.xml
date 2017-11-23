@@ -15,17 +15,17 @@
         <service android:name=".services.BeaconLocationService" />
 
         <activity
-            android:noHistory="true"
-            android:name=".LoginActivity">
+            android:name=".LoginActivity"
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:theme="@style/Noappbar">
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Noappbar"></activity>
     </application>
 
 </manifest>

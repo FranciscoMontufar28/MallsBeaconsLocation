@@ -11,104 +11,111 @@
 
     </data>
 
-    <android.support.constraint.ConstraintLayout
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context="com.example.francisco.pruebabackground.BeaconRecomendation">
 
-        <ImageView
-            android:id="@+id/toolbarMain"
-            android:layout_width="0dp"
-            android:layout_height="56dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/appbarmask" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/toolbarMain">
+            <ImageView
+                android:id="@+id/toolbarMain"
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/appbarmask" />
 
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/container"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolbarMain">
 
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/floatingactionmain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            app:backgroundTint="@color/RednoActivate"
-            android:layout_margin="16dp"
-            android:src="@drawable/ic_circleline"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:onClick="@{()->Promotionhandler.start()}"
-            app:layout_constraintEnd_toEndOf="parent" />
+            </FrameLayout>
 
-        <!--<Button
-            android:id="@+id/Start_button"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="0dp"
-            android:layout_height="48dp"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{()->Promotionhandler.start()}"
-            android:text="@string/Btn_Start"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toLeftOf="@+id/Stop_Button"
-            tools:ignore="RtlHardcoded"
+            <android.support.design.widget.FloatingActionButton
+                android:id="@+id/floatingactionmain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                app:backgroundTint="@color/RednoActivate"
+                android:layout_margin="16dp"
+                android:src="@drawable/ic_circleline"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:onClick="@{()->Promotionhandler.start()}"
+                app:layout_behavior="om.example.francisco.mallsbeaconslocation.utilfloating.FAB_Hide_on_Scroll"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-            />
+            <!--<Button
+                android:id="@+id/Start_button"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="0dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{()->Promotionhandler.start()}"
+                android:text="@string/Btn_Start"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintHorizontal_chainStyle="spread_inside"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toLeftOf="@+id/Stop_Button"
+                tools:ignore="RtlHardcoded"
 
-        <Button
-            android:id="@+id/Stop_Button"
-            style="@style/Widget.AppCompat.Button.Borderless.Colored"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:onClick="@{()->Promotionhandler.stop()}"
-            android:text="@string/Btn_Stop"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toRightOf="@+id/Start_button"
-            app:layout_constraintRight_toRightOf="parent"
-            tools:ignore="RtlHardcoded" />-->
+                />
 
-        <TextView
-            android:id="@+id/aisle_name_text"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="Supermercado"
-            android:textAlignment="textStart"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
-            app:layout_constraintBottom_toTopOf="@+id/container"
-            app:layout_constraintEnd_toStartOf="@+id/Btn_logout"
-            app:layout_constraintStart_toStartOf="@+id/toolbarMain"
-            app:layout_constraintTop_toTopOf="@+id/toolbarMain" />
+            <Button
+                android:id="@+id/Stop_Button"
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{()->Promotionhandler.stop()}"
+                android:text="@string/Btn_Stop"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toRightOf="@+id/Start_button"
+                app:layout_constraintRight_toRightOf="parent"
+                tools:ignore="RtlHardcoded" />-->
 
-        <ImageView
-            android:id="@+id/Btn_logout"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:layout_marginBottom="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/container"
-            app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_logout"
-            android:onClick="@{()->Promotionhandler.logout()}"/>
+            <TextView
+                android:id="@+id/aisle_name_text"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="Supermercado"
+                android:textAlignment="textStart"
+                android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
+                app:layout_constraintBottom_toTopOf="@+id/container"
+                app:layout_constraintEnd_toStartOf="@+id/Btn_logout"
+                app:layout_constraintStart_toStartOf="@+id/toolbarMain"
+                app:layout_constraintTop_toTopOf="@+id/toolbarMain" />
 
-    </android.support.constraint.ConstraintLayout>
+            <ImageView
+                android:id="@+id/Btn_logout"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/container"
+                app:layout_constraintEnd_toEndOf="@+id/toolbarMain"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_logout"
+                android:onClick="@{()->Promotionhandler.logout()}" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.design.widget.CoordinatorLayout>
+
 </layout>

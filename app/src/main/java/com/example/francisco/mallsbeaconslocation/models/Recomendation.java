@@ -6,17 +6,35 @@ package com.example.francisco.mallsbeaconslocation.models;
 
 public class Recomendation {
 
-    private String itemname, itemdescription, itemurl, itemsodium, itemsugar;
+    private String itemname, itemdescription, itemurl, itemsodium, itemsugar, promotion, promotiondescription;
 
     public Recomendation() {
     }
 
-    public Recomendation(String itemname, String itemdescription, String itemurl, String itemsodium, String itemsugar) {
+    public Recomendation(String itemname, String itemdescription, String itemurl, String itemsodium, String itemsugar, String promotion, String promotiondescription) {
         this.itemname = itemname;
         this.itemdescription = itemdescription;
         this.itemurl = itemurl;
         this.itemsodium = itemsodium;
         this.itemsugar = itemsugar;
+        this.promotion = promotion;
+        this.promotiondescription = promotiondescription;
+    }
+
+    public String getPromotion() {
+        return promotion;
+    }
+
+    public void setPromotion(String promotion) {
+        this.promotion = promotion;
+    }
+
+    public String getPromotiondescription() {
+        return promotiondescription;
+    }
+
+    public void setPromotiondescription(String promotiondescription) {
+        this.promotiondescription = promotiondescription;
     }
 
     public String getItemname() {

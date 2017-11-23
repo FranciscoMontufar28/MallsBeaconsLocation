@@ -1,18 +1,22 @@
 package com.example.francisco.mallsbeaconslocation;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.databinding.DataBindingUtil;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.util.AttributeSet;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -158,9 +162,11 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
 
     }
 
+
+
     @Override
     public void onBeaconSearch(List<Recomendation> data) {
-        fragment.changedata(data);
+        fragment.addItems(data);
     }
 
     @Override

@@ -6,15 +6,15 @@
     android:layout_marginTop="8dp">
 
     <data>
-        
+
         <import type="android.view.View" alias="V"/>
-        
+
         <variable
-            name="recomendation"
+            name="promotion"
             type="com.example.francisco.mallsbeaconslocation.models.Recomendation"/>
 
         <variable
-            name="ViewHolder"
+            name="ViewHolderPromotion"
             type="com.example.francisco.mallsbeaconslocation.adapter.RecomendationAdapter"/>
 
     </data>
@@ -22,7 +22,7 @@
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#3bbdbdbd">
+        android:background="#8BC34A">
 
         <ImageView
             android:id="@+id/itemimage"
@@ -71,7 +71,8 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/itemimage">
+            app:layout_constraintTop_toBottomOf="@+id/itemimage"
+            android:backgroundTint="#8BC34A">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -81,46 +82,19 @@
                     android:id="@+id/itemdescription"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:text="@{recomendation.itemdescription}"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                     android:visibility="@{recomendation.itemdescription == null ? V.GONE : V.VISIBLE}"
-                    app:layout_constraintBottom_toTopOf="@+id/itemsSodium"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="Description" />
 
-                <TextView
-                    android:id="@+id/itemsSodium"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text='@{"Este producto contiene "+recomendation.itemsodium+" miligramo(s) de sodio."}'
-                    android:visibility="@{recomendation.itemsodium == null ? V.GONE : V.VISIBLE}"
-                    app:layout_constraintBottom_toTopOf="@+id/itemSugar"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="Sodium" />
-
-                <TextView
-                    android:id="@+id/itemSugar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginStart="8dp"
-                    android:text='@{"Este producto contiene "+recomendation.itemsugar+" gramo(s) de azúcar."}'
-                    android:visibility="@{recomendation.itemsugar == null ? V.GONE : V.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    tools:text="Sugar" />
 
             </android.support.constraint.ConstraintLayout>
 
@@ -137,7 +111,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
+            app:layout_constraintTop_toBottomOf="@+id/cardView"
+            android:backgroundTint="#8BC34A">
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
@@ -152,26 +127,13 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:backgroundTint="#388E3C"
                     android:text="Me Gusta"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <!--<Button
-                    android:id="@+id/Btn_No_Comprar"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
-                    android:layout_marginEnd="8dp"
-                    android:layout_marginTop="8dp"
-                    android:backgroundTint="#fff"
-                    android:text="No Compraria"
-                    android:textColor="#F44336"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/Btn_Comprar"
-                    app:layout_constraintTop_toTopOf="parent" />-->
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 
