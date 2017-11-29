@@ -76,7 +76,10 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
 
             final BeaconSearchApi api = new BeaconSearchApi(this);
             final AisleNameApi aisleNameapi = new AisleNameApi(this);
+            api.getPreferencesRecomenderPromotion(""+UserId,"1","2",this);
             api.getPreferencesRecomender(""+UserId,"1","2",this);
+            api.getClosePromotion(""+UserId,"1","2",this);
+            api.getPreferencesMostPreferredPromotion(""+UserId,"1","2",this);
             api.getPreferencesMostPreferred(""+UserId,"1","2",this);
 
             aisleNameapi.getAisleName("1","2",this);
@@ -97,10 +100,14 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
                     .subscribe(new Consumer<Integer[]>() {
                         @Override
                         public void accept(Integer[] integers) throws Exception {
-                            //aisleNameapi.getAisleName("" + integers[0], "" + integers[1], MainActivity.this);
-                            //api.getPreferencesRecomender("2000105", "" + integers[0], "" + integers[1], MainActivity.this);
-                            //api.getPreferencesRecomender("2000008","1","2",MainActivity.this);
-                            //Toast.makeText(MainActivity.this, "" + integers[0] + " " + integers[1], Toast.LENGTH_SHORT).show();
+                            /*aisleNameapi.getAisleName("" + integers[0], "" + integers[1], MainActivity.this);
+                            api.getPreferencesMostPreferredPromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
+                            api.getPreferencesRecomender(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
+                            api.getPreferencesRecomenderPromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
+                            api.getPreferencesMostPreferred(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
+                            api.getClosePromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);*/
+
+                            Toast.makeText(MainActivity.this, "" + integers[0] + " " + integers[1], Toast.LENGTH_SHORT).show();
                             //Log.i("BEACONINFO", "MARJOR1: " + integers[0] + " MAJOR2:" + integers[1]);
                         }
                     });

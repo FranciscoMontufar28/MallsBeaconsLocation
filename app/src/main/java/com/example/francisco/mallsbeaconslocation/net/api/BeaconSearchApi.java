@@ -32,17 +32,43 @@ public class BeaconSearchApi extends HttpApi {
         this.onBeaconSearch = onBeaconSearch;
 
         String url = urlBaseBeacon+"preferences?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo;
-        Log.e("URL", urlBaseBeacon+"preferences?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo);
+        //Log.e("URL", urlBaseBeacon+"preferences?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo);
         HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
         task.execute(url);
     }
 
 
     public void getPreferencesMostPreferred(String Userid, String Beaconone, String Beacontwo, BeaconSearchApi.onBeaconSearch onBeaconSearch){
-        this.onBeaconSearch = (BeaconSearchApi.onBeaconSearch) onBeaconSearch;
+        this.onBeaconSearch = onBeaconSearch;
 
         String url = urlBaseBeacon+"morepreferred?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo;
-        Log.e("URL", urlBaseBeacon+"morepreferred?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo);
+        //Log.e("URL", urlBaseBeacon+"morepreferred?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo);
+        HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
+        task.execute(url);
+    }
+
+    public void getPreferencesRecomenderPromotion(String Userid, String Beaconone, String Beacontwo, BeaconSearchApi.onBeaconSearch onBeaconSearch){
+        this.onBeaconSearch = onBeaconSearch;
+
+        String url = urlBaseBeacon+"preferencespromotion?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo;
+        //Log.e("URL", ""+url);
+        HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
+        task.execute(url);
+    }
+
+    public void getPreferencesMostPreferredPromotion(String Userid, String Beaconone, String Beacontwo, BeaconSearchApi.onBeaconSearch onBeaconSearch){
+        this.onBeaconSearch = onBeaconSearch;
+
+        String url = urlBaseBeacon+"morepreferredpromotion?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo;
+        HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
+        task.execute(url);
+    }
+
+    public void getClosePromotion(String Userid, String Beaconone, String Beacontwo, BeaconSearchApi.onBeaconSearch onBeaconSearch){
+        this.onBeaconSearch = onBeaconSearch;
+
+        String url = urlBaseBeacon+"closepromotion?usernameid="+Userid+"&beaconidone=Beacon"+Beaconone+"&beaconidtwo=Beacon"+Beacontwo;
+        Log.e("URL", ""+url);
         HttpAsyncTask task = makeTask(REQUEST_BEACON, HttpAsyncTask.METHOD_GET);
         task.execute(url);
     }

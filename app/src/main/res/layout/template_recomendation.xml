@@ -130,6 +130,33 @@
                     app:layout_constraintTop_toBottomOf="@+id/itemsSodium"
                     tools:text="Sugar" />
 
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/Img_Url_Item"
+                    app:layout_constraintStart_toStartOf="@+id/Img_Url_Item"
+                    app:layout_constraintTop_toTopOf="@+id/Img_Url_Item"
+                    app:srcCompat="@drawable/maskblack" />
+
+                <TextView
+                    android:id="@+id/Recomendado"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Recomendado Para Ti"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Notification"
+                    android:textColor="#fff"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView"
+                    app:layout_constraintStart_toStartOf="@+id/Img_Url_Item"
+                    app:layout_constraintTop_toTopOf="@+id/imageView"
+                    tools:text="Recomendado Para Ti" />
+
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
 

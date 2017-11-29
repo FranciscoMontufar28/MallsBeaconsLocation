@@ -104,7 +104,7 @@
                     tools:text="Information" />
 
                 <android.support.design.widget.FloatingActionButton
-                    android:id="@+id/floatingActionButton4"
+                    android:id="@+id/Btn_promo_like"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
@@ -113,6 +113,32 @@
                     app:layout_constraintEnd_toEndOf="@+id/item_promotion_Descrip"
                     app:layout_constraintTop_toTopOf="@+id/img_Promotion"
                     app:srcCompat="@drawable/ic_thumb_up" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintEnd_toEndOf="@+id/img_Promotion"
+                    app:layout_constraintStart_toStartOf="@+id/img_Promotion"
+                    app:layout_constraintTop_toTopOf="@+id/img_Promotion"
+                    app:srcCompat="@drawable/mask" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Promocion especial para ti"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Notification"
+                    android:textColor="#fff"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                    app:layout_constraintStart_toStartOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView2"
+                    tools:text="Promocion especial para ti" />
 
             </android.support.constraint.ConstraintLayout>
         </android.support.v7.widget.CardView>
