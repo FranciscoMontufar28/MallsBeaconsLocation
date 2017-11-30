@@ -162,8 +162,8 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
                     SharedPreferences preferences = context.getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
                     String UserId = preferences.getString(Preferences.KEY_ID, null);
                     int position = getAdapterPosition();
-                    String itemname = data.get(position).getItemname();
-                    //Toast.makeText(context,""+itemname+" "+UserId,Toast.LENGTH_SHORT).show();
+                    String itemname = data.get(position).getItemcode();
+                    Toast.makeText(context,"Like",Toast.LENGTH_SHORT).show();
                     Log.e("BTN_Adapter", "BTN_LIKE");
 
 
@@ -201,8 +201,8 @@ public class RecomendationAdapter extends RecyclerView.Adapter<RecyclerView.View
                     SharedPreferences preferences = context.getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
                     String UserId = preferences.getString(Preferences.KEY_ID, null);
                     int position = getAdapterPosition();
-                    String itemname = data.get(position).getItemname();
-                    //Toast.makeText(context,""+itemname+" "+UserId,Toast.LENGTH_SHORT).show();
+                    String itemname = data.get(position).getItemcode();
+                    Toast.makeText(context,"Like",Toast.LENGTH_SHORT).show();
                     Log.e("BTN_Adapter", "BTN_LIKE");
 
                     userApi.setUserResponse(""+UserId, "" +itemname);

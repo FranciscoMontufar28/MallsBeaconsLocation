@@ -39,7 +39,7 @@ public abstract class HttpApi implements HttpAsyncTask.OnResponseListener {
             Toast.makeText(context, R.string.http_error_internet, Toast.LENGTH_SHORT).show();
             return false;
         }else if(error == HttpError.TIMEOUT){
-            Toast.makeText(context, R.string.http_error_timeout, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context, R.string.http_error_timeout, Toast.LENGTH_SHORT).show();
             return false;
         }else{
            // Toast.makeText(context, R.string.http_error_server, Toast.LENGTH_SHORT).show();

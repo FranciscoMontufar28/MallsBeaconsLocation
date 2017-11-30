@@ -56,7 +56,6 @@ public class MainFragment extends Fragment{
     public void addItems(List<Recomendation> data){
         this.data.addAll(data);
         adapter.notifyDataSetChanged();
-
     }
 
     public void changedata(List<Recomendation>data){
