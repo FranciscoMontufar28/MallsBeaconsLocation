@@ -51,7 +51,7 @@
                 android:layout_gravity="bottom|end"
                 app:backgroundTint="@color/RednoActivate"
                 android:layout_margin="16dp"
-                android:src="@drawable/ic_circleline"
+                app:srcCompat="@drawable/ic_circleline"
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:onClick="@{()->Promotionhandler.start()}"
                 app:layout_behavior="om.example.francisco.mallsbeaconslocation.utilfloating.FAB_Hide_on_Scroll"
@@ -87,14 +87,15 @@
                 tools:ignore="RtlHardcoded" />-->
 
             <TextView
-                android:id="@+id/aisle_name_text"
+                android:id="@+id/aislenametext"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:layout_marginBottom="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Supermercado"
+                android:text="@string/supermercado"
+
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title.Inverse"
                 app:layout_constraintBottom_toTopOf="@+id/container"

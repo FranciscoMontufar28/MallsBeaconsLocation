@@ -30,6 +30,7 @@ public class MainFragment extends Fragment{
     List<Recomendation> data;
     FragmentMainBinding binding;
     RecomendationAdapter adapter;
+    int datasize = 0;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,7 +55,17 @@ public class MainFragment extends Fragment{
 
 
     public void addItems(List<Recomendation> data){
+        Log.e("datos","Cantidad de datos "+this.data.size());
         this.data.addAll(data);
+        if(!this.data.isEmpty())
+            adapter.notifyDataSetChanged();
+
+    }
+
+
+    public void deleatedata(){
+        if(!this.data.isEmpty())
+        this.data.clear();
         adapter.notifyDataSetChanged();
     }
 

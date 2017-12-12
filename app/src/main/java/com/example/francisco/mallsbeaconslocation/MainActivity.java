@@ -11,12 +11,15 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.AppCompatDelegate;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.estimote.coresdk.common.requirements.SystemRequirementsChecker;
 import com.example.francisco.mallsbeaconslocation.Receivers.BeaconReceiver;
 import com.example.francisco.mallsbeaconslocation.databinding.ActivityMainBinding;
+import com.example.francisco.mallsbeaconslocation.fragments.HintFragment;
 import com.example.francisco.mallsbeaconslocation.fragments.MainFragment;
 import com.example.francisco.mallsbeaconslocation.models.AisleName;
 import com.example.francisco.mallsbeaconslocation.models.Recomendation;
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
 
     Disposable disposable;
     MainFragment fragment;
+    HintFragment fragmenthint;
     SharedPreferences preferences;
     String UserId;
 
@@ -52,34 +56,17 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setPromotionhandler(this);
         fragment = MainFragment.instance();
-        putFragment(R.id.container, fragment);
+        fragmenthint = HintFragment.instance();
+
+        //putFragment(R.id.container, fragment);
+        putFragment(R.id.container, fragmenthint);
+
+
 
         //Toast.makeText(this, ""+email,Toast.LENGTH_SHORT).show();
 
 
     }
-
-/*    @Override
-    protected void onPause() {
-        super.onPause();
-        if (binding.floatingactionmain.getBackgroundTintList().equals(ContextCompat.getColorStateList(this, R.color.colorPrimary))){
-            stopService(intent);
-            disposable.dispose();
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-            unregisterReceiver(receiver);
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (binding.floatingactionmain.getBackgroundTintList().equals(ContextCompat.getColorStateList(this, R.color.colorPrimary))){
-            stopService(intent);
-            disposable.dispose();
-            Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
-            unregisterReceiver(receiver);
-        }
-        super.onDestroy();
-    }*/
 
     public void putFragment(int container, Fragment fragment){
         FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -95,6 +82,9 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
             SystemRequirementsChecker.checkWithDefaultDialogs(this);
             preferences = getSharedPreferences(Preferences.PREFERENCES_NAME, MODE_PRIVATE);
             UserId = preferences.getString(Preferences.KEY_ID, null);
+
+            putFragment(R.id.container, fragment);
+
 
             final BeaconSearchApi api = new BeaconSearchApi(this);
             final AisleNameApi aisleNameapi = new AisleNameApi(this);
@@ -123,33 +113,26 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
                         @Override
                         public void accept(Integer[] integers) throws Exception {
                             aisleNameapi.getAisleName("" + integers[0], "" + integers[1], MainActivity.this);
+
                             api.getPreferencesMostPreferredPromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
                             api.getPreferencesRecomender(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
                             api.getPreferencesRecomenderPromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
                             api.getPreferencesMostPreferred(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
                             api.getClosePromotion(""+UserId, "" + integers[0], "" + integers[1], MainActivity.this);
 
+                            fragment.deleatedata();
                             //Toast.makeText(MainActivity.this, "" + integers[0] + " " + integers[1], Toast.LENGTH_SHORT).show();
-                            //Log.i("BEACONINFO", "MARJOR1: " + integers[0] + " MAJOR2:" + integers[1]);
+                            Log.i("BEACONINFO", "MARJOR1: " + integers[0] + " MAJOR2:" + integers[1]);
                         }
                     });
 
         }else{
             binding.floatingactionmain.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.RednoActivate));
-            //Toast.makeText(this, "", Toast.LENGTH_SHORT).show();
             stopService(intent);
             disposable.dispose();
             unregisterReceiver(receiver);
         }
     }
-
-    /*public void stop(){
-
-        Toast.makeText(this, "Detener Servicio", Toast.LENGTH_SHORT).show();
-        stopService(intent);
-        disposable.dispose();
-        unregisterReceiver(receiver);
-    }*/
 
     public void logout(){
 
@@ -194,9 +177,20 @@ public class MainActivity extends AppCompatActivity implements BeaconSearchApi.o
     @Override
     public void onAisleSearch(List<AisleName> dataaisle) {
 
+
+
         AisleName aisleName = dataaisle.get(0);
-        TextView Title = findViewById(R.id.aisle_name_text);
-        Title.setText(aisleName.getAislename());
+        binding.aislenametext.setText(" ");
+        binding.aislenametext.setText(aisleName.getAislename());
+
+        /*if(!aisleName.getAislename().equals("")){
+
+        }
+        else {
+            binding.aislenametext.setText(aisleName.getAislename());
+        }*/
+        /*TextView Title = findViewById(R.id.aisle_name_text);
+        Title.setText(aisleName.getAislename());*/
 
     }
 }

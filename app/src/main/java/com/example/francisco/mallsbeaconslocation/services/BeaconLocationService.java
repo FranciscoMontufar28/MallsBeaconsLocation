@@ -7,6 +7,7 @@ import android.os.IBinder;
 import android.os.Looper;
 import android.util.Log;
 
+import com.estimote.coresdk.repackaged.okhttp_v2_2_0.com.squareup.okhttp.internal.Util;
 import com.example.francisco.mallsbeaconslocation.Receivers.BeaconReceiver;
 import com.estimote.coresdk.recognition.packets.Beacon;
 import com.estimote.coresdk.service.BeaconManager;
@@ -18,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+
 
 /**
  * Created by jhovy on 5/11/2017.
@@ -54,6 +56,7 @@ public class BeaconLocationService extends Service {
         //region = new Region("ranged region", UUID.fromString("b9407f30-f5f8-466e-aff9-25556b57fe6d"), null, null);
 
         beaconManager = new BeaconManager(this);
+        beaconManager.setBackgroundScanPeriod(500, 500);
         beaconManager.setRangingListener(new BeaconManager.BeaconRangingListener() {
             @Override
             public void onBeaconsDiscovered(BeaconRegion beaconRegion, List<Beacon> list) {
@@ -61,36 +64,33 @@ public class BeaconLocationService extends Service {
                 Log.e("Reactive", "list: "+list);
                 Log.e("Reactive", "Entro a onBeaconsDiscovered");
                 if (!list.isEmpty()) {
-                    Beacon nearestBeacon = list.get(0);
+
                     Log.e("Reactive", "size "+list.size());
                     switch (list.size()){
 
                         case 1:
                             Log.e("Reactive", "case 1");
-                            intent.putExtra(BeaconReceiver.EXTRA_MAJOR, nearestBeacon.getMajor());
-                            intent.putExtra(BeaconReceiver.EXTRA_MINOR, nearestBeacon.getMinor());
-
                             break;
+
                         default:
-                            Log.e("Reactive", "case 2");
+
+                            Log.e("Reactive", "case default");
+                            Beacon nearestBeacon = list.get(0);
                             Beacon nearestBeacon2 = list.get(1);
                             intent.putExtra(BeaconReceiver.EXTRA_MAJOR, nearestBeacon.getMajor());
-                            intent.putExtra(BeaconReceiver.EXTRA_MINOR, nearestBeacon.getMinor());
-/**************************************************************************************************************************/
                             intent.putExtra(BeaconReceiver.EXTRA_MAJOR2, nearestBeacon2.getMajor());
-                            intent.putExtra(BeaconReceiver.EXTRA_MINOR2, nearestBeacon2.getMinor());
+                            sendBroadcast(intent);
                             break;
-
 
 
                     }
-                    sendBroadcast(intent);
+
 
                 } else {
                     Log.d("Reactive", "empty");
                     /**Como no se detectan Beacons, el indicador retorna a "0" **/
-                    current_location = 0;
-                    current_location2 = 0;
+                    //current_location = 0;
+                    //current_location2 = 0;
 
                 }
 
